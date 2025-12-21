@@ -4,7 +4,7 @@ O **Pizza Pulse** é uma aplicação web moderna para gestão de pedidos de pizz
 
 [Ver Ao Vivo](https://pizza-pulse-front.vercel.app)
 
-Este é o Front-End que se conecta com a API [Sistema de Pedidos](https://github.com/gustavo-marcialis/Pizza-Pulse-Backend)
+Este é o Front-End que se conecta com a API [Pizza Pulse Backend](https://github.com/gustavo-marcialis/Pizza-Pulse-Backend)
 
 A aplicação utiliza autenticação segura via **Microsoft Entra ID (Azure AD)** e segue as melhores práticas de segurança para Single Page Applications (SPA), alinhada com conceitos de governança e identidade (SC-900).
 

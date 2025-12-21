@@ -2,6 +2,8 @@
 
 O **Pizza Pulse** é uma aplicação web moderna para gestão de pedidos de pizzaria, desenvolvida para integrar o fluxo entre Clientes (Cardápio Digital), Garçons (Gestão de Pedidos) e Cozinha (Controle de Produção).
 
+[Ver Ao Vivo](https://pizza-pulse-front.vercel.app)
+
 Este é o Front-End que se conecta com a API [Sistema de Pedidos](https://github.com/gustavo-marcialis/Sistema-de-Pedidos)
 
 A aplicação utiliza autenticação segura via **Microsoft Entra ID (Azure AD)** e segue as melhores práticas de segurança para Single Page Applications (SPA), alinhada com conceitos de governança e identidade (SC-900).

@@ -1,7 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { UtensilsCrossed, Search, ShoppingCart, Trash2, ArrowRight, Loader2, Plus, MessageSquare } from 'lucide-react';
+import { 
+  UtensilsCrossed, 
+  Search, 
+  ShoppingCart, 
+  Trash2, 
+  ArrowRight, 
+  Loader2, 
+  Plus, 
+  MessageSquare,
+  Terminal,
+  UserCog,
+  ChefHat
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -19,6 +31,7 @@ import {
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const MENU_ITEMS = [
   { id: 1, name: 'Pizza Calabresa', category: 'Pizzas Salgadas', description: 'Molho, mussarela, calabresa e cebola', price: 45.00 },
@@ -111,30 +124,77 @@ const Index = () => {
 
   if (!isMesaConfirmed) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-pizza-pattern bg-cover p-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-pizza-pattern bg-cover p-4 overflow-y-auto">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-        <Card className="w-full max-w-md relative z-10 border-none shadow-2xl bg-white/95">
-          <CardContent className="pt-6 pb-8 px-8 text-center space-y-6">
-            <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <UtensilsCrossed className="w-10 h-10 text-primary" />
-            </div>
-            <h1 className="font-display text-3xl font-bold text-gray-900">Pizza Pulse</h1>
-            <p className="text-gray-500">Digite o número da sua mesa para começar</p>
-            <form onSubmit={handleConfirmMesa} className="space-y-4">
-              <Input
-                type="number"
-                placeholder="Número da Mesa"
-                className="text-center text-2xl h-14"
-                value={mesa}
-                onChange={(e) => setMesa(e.target.value)}
-                autoFocus
-              />
-              <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={!mesa}>
-                Ver Cardápio
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+        
+        {/* Container Principal */}
+        <div className="relative z-10 w-full max-w-md space-y-6 my-8">
+          
+          {/* Card de Entrada do Cliente */}
+          <Card className="border-none shadow-2xl bg-white/95">
+            <CardContent className="pt-6 pb-8 px-8 text-center space-y-6">
+              <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                <UtensilsCrossed className="w-10 h-10 text-primary" />
+              </div>
+              <h1 className="font-display text-3xl font-bold text-gray-900">Pizza Pulse</h1>
+              <p className="text-gray-500">Digite o número da sua mesa para começar</p>
+              <form onSubmit={handleConfirmMesa} className="space-y-4">
+                <Input
+                  type="number"
+                  placeholder="Número da Mesa"
+                  className="text-center text-2xl h-14"
+                  value={mesa}
+                  onChange={(e) => setMesa(e.target.value)}
+                  autoFocus
+                />
+                <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={!mesa}>
+                  Ver Cardápio
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Área de Demonstração para Recrutadores */}
+          <Alert className="bg-slate-900 border-slate-700 text-slate-100 shadow-xl">
+            <Terminal className="h-4 w-4 text-blue-400" />
+            <AlertTitle className="text-blue-400 font-bold flex items-center gap-2">
+              Modo Demonstração (Acesso Restrito)
+            </AlertTitle>
+            <AlertDescription className="mt-3 space-y-3">
+              <p className="text-xs text-slate-400">
+                Utilize as credenciais abaixo para testar os perfis administrativos via Login:
+              </p>
+              
+              <div className="grid gap-3">
+                {/* Card Garçom */}
+                <div className="p-3 bg-slate-800 rounded border border-slate-700">
+                  <div className="flex items-center gap-2 mb-2 text-orange-400 font-bold text-sm">
+                    <UserCog size={16} /> Perfil Garçom
+                  </div>
+                  <div className="text-xs text-slate-300 space-y-1 font-mono">
+                    <p><span className="text-slate-500">Email:</span> GarcomDemo@gustavosmarcialisgmail.onmicrosoft.com</p>
+                    <p><span className="text-slate-500">Senha:</span> Demogarcom07@</p>
+                  </div>
+                </div>
+
+                {/* Card Cozinha */}
+                <div className="p-3 bg-slate-800 rounded border border-slate-700">
+                  <div className="flex items-center gap-2 mb-2 text-red-400 font-bold text-sm">
+                    <ChefHat size={16} /> Perfil Cozinha
+                  </div>
+                  <div className="text-xs text-slate-300 space-y-1 font-mono">
+                    <p><span className="text-slate-500">Email:</span> PizzaioloDemo@gustavosmarcialisgmail.onmicrosoft.com</p>
+                    <p><span className="text-slate-500">Senha:</span> Demopizzaiolo07@</p>
+                    <p className="pt-2 text-yellow-400 font-bold block">
+                      ⚠️ Acesse a cozinha em: /dashboard
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AlertDescription>
+          </Alert>
+
+        </div>
       </div>
     );
   }

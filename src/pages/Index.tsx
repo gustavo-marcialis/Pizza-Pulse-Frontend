@@ -12,7 +12,8 @@ import {
   MessageSquare,
   Terminal,
   UserCog,
-  ChefHat
+  ChefHat,
+  Copy // Importado o ícone de copiar
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -60,6 +61,16 @@ const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   const { toast } = useToast();
+
+  // Função auxiliar para copiar texto para a área de transferência
+  const handleCopy = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    toast({
+      title: "Copiado!",
+      description: `${label} copiado para a área de transferência.`,
+      duration: 1500,
+    });
+  };
 
   const handleConfirmMesa = (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,6 +134,11 @@ const Index = () => {
   };
 
   if (!isMesaConfirmed) {
+    const garcomEmail = "GarcomDemo@gustavosmarcialisgmail.onmicrosoft.com";
+    const garcomPass = "Demogarcom07@";
+    const cozinhaEmail = "PizzaioloDemo@gustavosmarcialisgmail.onmicrosoft.com";
+    const cozinhaPass = "Demopizzaiolo07@";
+
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-pizza-pattern bg-cover p-4 overflow-y-auto">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
@@ -171,9 +187,29 @@ const Index = () => {
                   <div className="flex items-center gap-2 mb-2 text-orange-400 font-bold text-sm">
                     <UserCog size={16} /> Perfil Garçom
                   </div>
-                  <div className="text-xs text-slate-300 space-y-1 font-mono">
-                    <p><span className="text-slate-500">Email:</span> GarcomDemo@gustavosmarcialisgmail.onmicrosoft.com</p>
-                    <p><span className="text-slate-500">Senha:</span> Demogarcom07@</p>
+                  <div className="text-xs text-slate-300 space-y-2 font-mono">
+                    
+                    {/* Email Row */}
+                    <div className="flex justify-between items-center gap-2 bg-slate-900/50 p-1.5 rounded">
+                      <p className="break-all">
+                        <span className="text-slate-500 select-none mr-1">Email:</span>
+                        {garcomEmail}
+                      </p>
+                      <Button variant="ghost" size="icon" className="h-6 w-6 text-slate-400 hover:text-white hover:bg-slate-700 shrink-0" onClick={() => handleCopy(garcomEmail, "Email")}>
+                        <Copy size={12} />
+                      </Button>
+                    </div>
+
+                    {/* Password Row */}
+                    <div className="flex justify-between items-center gap-2 bg-slate-900/50 p-1.5 rounded">
+                      <p>
+                        <span className="text-slate-500 select-none mr-1">Senha:</span>
+                        {garcomPass}
+                      </p>
+                      <Button variant="ghost" size="icon" className="h-6 w-6 text-slate-400 hover:text-white hover:bg-slate-700 shrink-0" onClick={() => handleCopy(garcomPass, "Senha")}>
+                        <Copy size={12} />
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
@@ -182,10 +218,31 @@ const Index = () => {
                   <div className="flex items-center gap-2 mb-2 text-red-400 font-bold text-sm">
                     <ChefHat size={16} /> Perfil Cozinha
                   </div>
-                  <div className="text-xs text-slate-300 space-y-1 font-mono">
-                    <p><span className="text-slate-500">Email:</span> PizzaioloDemo@gustavosmarcialisgmail.onmicrosoft.com</p>
-                    <p><span className="text-slate-500">Senha:</span> Demopizzaiolo07@</p>
-                    <p className="pt-2 text-yellow-400 font-bold block">
+                  <div className="text-xs text-slate-300 space-y-2 font-mono">
+                    
+                     {/* Email Row */}
+                    <div className="flex justify-between items-center gap-2 bg-slate-900/50 p-1.5 rounded">
+                      <p className="break-all">
+                        <span className="text-slate-500 select-none mr-1">Email:</span>
+                        {cozinhaEmail}
+                      </p>
+                      <Button variant="ghost" size="icon" className="h-6 w-6 text-slate-400 hover:text-white hover:bg-slate-700 shrink-0" onClick={() => handleCopy(cozinhaEmail, "Email")}>
+                        <Copy size={12} />
+                      </Button>
+                    </div>
+
+                     {/* Password Row */}
+                    <div className="flex justify-between items-center gap-2 bg-slate-900/50 p-1.5 rounded">
+                      <p>
+                        <span className="text-slate-500 select-none mr-1">Senha:</span>
+                        {cozinhaPass}
+                      </p>
+                      <Button variant="ghost" size="icon" className="h-6 w-6 text-slate-400 hover:text-white hover:bg-slate-700 shrink-0" onClick={() => handleCopy(cozinhaPass, "Senha")}>
+                        <Copy size={12} />
+                      </Button>
+                    </div>
+
+                    <p className="pt-1 text-yellow-400 font-bold block">
                       ⚠️ Acesse a cozinha em: /dashboard
                     </p>
                   </div>

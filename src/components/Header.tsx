@@ -26,7 +26,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
+        {/* Logo Atualizado para Pizza Pulse */}
         <Link to="/" className="flex items-center gap-2 group">
           <motion.div
             whileHover={{ rotate: 15 }}
@@ -35,7 +35,7 @@ export function Header() {
             <Pizza className="h-6 w-6 text-primary" />
           </motion.div>
           <span className="font-display text-xl font-semibold text-foreground">
-            Forno à Lenha
+            Pizza Pulse
           </span>
         </Link>
 

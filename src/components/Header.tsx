@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Pizza, ChefHat, ClipboardList, LogIn, LogOut, User } from 'lucide-react';
+import { Pizza, ChefHat, ClipboardList, LogIn, LogOut, User, UtensilsCrossed } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import {
@@ -26,13 +26,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo Atualizado para Pizza Pulse */}
+        {/* Logo Atualizado com Ícone Correto */}
         <Link to="/" className="flex items-center gap-2 group">
           <motion.div
             whileHover={{ rotate: 15 }}
             className="p-2 rounded-full bg-primary/10"
           >
-            <Pizza className="h-6 w-6 text-primary" />
+            <UtensilsCrossed className="h-6 w-6 text-primary" />
           </motion.div>
           <span className="font-display text-xl font-semibold text-foreground">
             Pizza Pulse

@@ -13,7 +13,6 @@ const Dashboard = () => {
   const { data: pedidos, isLoading, isError, refetch, isRefetching, dataUpdatedAt } = usePedidosDashboard();
   const { isPizzaiolo, isGarcom, role } = useAuth();
 
-  // ✅ Definição de Permissões
   const canAdvanceStatus = isPizzaiolo;
   const canEdit = isGarcom;
 
@@ -71,7 +70,6 @@ const Dashboard = () => {
           </div>
         </motion.div>
 
-        {/* ✅ Aviso Novo do Garçom */}
         {isGarcom && (
           <Alert className="mb-6 bg-blue-50 border-blue-200">
             <AlertCircle className="h-4 w-4 text-blue-600" />
@@ -125,7 +123,7 @@ const Dashboard = () => {
                         key={pedido.id}
                         pedido={pedido}
                         canAdvanceStatus={canAdvanceStatus}
-                        canEdit={canEdit} // ✅ Passando a permissão
+                        canEdit={canEdit}
                         index={index}
                       />
                     ))}

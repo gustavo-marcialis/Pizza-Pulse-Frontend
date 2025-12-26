@@ -20,18 +20,15 @@ export function useAuth(): AuthState {
 
   const user = accounts[0] || null;
 
-  // Extract role from token claims
   const getRoleFromClaims = (): UserRole => {
     if (!user) return 'Guest';
     
-    // Check for roles in idTokenClaims
     const claims = user.idTokenClaims as Record<string, unknown> | undefined;
     const roles = claims?.roles as string[] | undefined;
     
     if (roles?.includes('Pizzaiolo')) return 'Pizzaiolo';
     if (roles?.includes('Garcom')) return 'Garcom';
     
-    // Default to Pizzaiolo if authenticated but no specific role (for testing)
     return isAuthenticated ? 'Pizzaiolo' : 'Guest';
   };
 

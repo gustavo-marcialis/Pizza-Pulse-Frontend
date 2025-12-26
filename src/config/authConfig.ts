@@ -1,6 +1,5 @@
 import { Configuration, PopupRequest } from "@azure/msal-browser";
 
-// Acessa as variáveis de ambiente do Vite
 const clientId = import.meta.env.VITE_AZURE_CLIENT_ID;
 const tenantId = import.meta.env.VITE_AZURE_TENANT_ID;
 const apiScope = import.meta.env.VITE_API_SCOPE;
@@ -18,12 +17,10 @@ export const msalConfig: Configuration = {
     }
 };
 
-// 1. Escopos para LOGIN
 export const loginRequest: PopupRequest = {
     scopes: ["User.Read"]
 };
 
-// 2. Escopos para a API
 export const tokenRequest = {
     scopes: [apiScope]
 };

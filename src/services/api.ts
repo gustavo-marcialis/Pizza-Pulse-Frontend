@@ -2,7 +2,6 @@ import axios from 'axios';
 import { msalInstance } from '../lib/msalClient'; 
 import { tokenRequest, apiConfig } from '../config/authConfig';
 
-// URL da API vindo da configuração centralizada (Segurança: Variável de Ambiente)
 const API_URL = apiConfig.baseUrl;
 
 const api = axios.create({
@@ -12,14 +11,11 @@ const api = axios.create({
   },
 });
 
-// === INTERCEPTOR DE SEGURANÇA ===
 api.interceptors.request.use(async (config) => {
-  // Ignora validação de token para rotas públicas de Cliente
   if (config.url?.includes('/Cliente/')) {
     return config;
   }
 
-  // Tenta pegar conta para rotas protegidas (Garçom/Cozinha)
   const account = msalInstance.getActiveAccount() || msalInstance.getAllAccounts()[0];
 
   if (account) {
@@ -51,13 +47,9 @@ export interface Pedido {
   dataCriacao: string;
 }
 
-// === CONVERSORES E HELPERS ===
-
 const mapPedidoBackendToFrontend = (p: any): Pedido => {
-  // Pega o status que veio do banco
   let statusVindoDoBanco = p.status ?? p.Status ?? 'Recebido';
   
-  // TRADUÇÃO: Se vier "Na fila", transformamos em "Recebido" para o Frontend entender
   if (statusVindoDoBanco === 'Na fila') {
     statusVindoDoBanco = 'Recebido';
   }
@@ -79,14 +71,13 @@ const getNextStatus = (current: string): string => {
   return 'Recebido';
 };
 
-// === API DO CLIENTE (PÚBLICA) ===
 export const clienteApi = {
   criarPedido: async (dados: { mesa: number | string; descricao: string; obs: string }) => {
     console.log("🚀 Criando pedido...", dados);
     const payload = {
       id: 0,
       mesa: String(dados.mesa),
-      sabores: dados.descricao, // Backend espera 'sabores'
+      sabores: dados.descricao,
       obs: dados.obs,
       status: 'Recebido'
     };
@@ -116,7 +107,6 @@ export const clienteApi = {
   }
 };
 
-// === API PROTEGIDA (REQUER LOGIN) ===
 export const protectedApi = {
   listarPedidos: async (): Promise<Pedido[]> => {
     const response = await api.get('/api/API/pedidos');

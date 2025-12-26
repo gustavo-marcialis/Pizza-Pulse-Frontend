@@ -38,7 +38,6 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/status" element={<StatusPage />} />
             
-            {/* AQUI: Colocamos a proteção de volta! */}
             <Route
               path="/dashboard"
               element={
